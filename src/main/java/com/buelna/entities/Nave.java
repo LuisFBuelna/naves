@@ -1,12 +1,9 @@
 package com.buelna.entities;
 
-import com.buelna.dtos.TripulanteDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "nave")
@@ -23,7 +20,6 @@ public class Nave {
 
     private String model;
 
-    @OneToMany(mappedBy = "nave")
-    private List<TripulanteDTO> tripulantes;
-
+    @Column(name = "take_off")
+    private boolean takeOff;
 }

@@ -1,5 +1,6 @@
 package com.buelna.controller;
 
+import com.buelna.dtos.NaveDTO;
 import com.buelna.entities.Nave;
 import com.buelna.services.NaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,12 @@ public class NaveController {
     private NaveService naveService;
 
     @GetMapping
-    public ResponseEntity<List<Nave>> getTripulantes() {
-
+    public ResponseEntity<List<NaveDTO>> getTripulantes() {
         return ResponseEntity.ok(naveService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Nave> getTripulanteById(@PathVariable("id") Long id) {
+    public ResponseEntity<NaveDTO> getTripulanteById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(naveService.getNaveById(id));
     }
 
@@ -43,5 +43,11 @@ public class NaveController {
     public ResponseEntity<Void> deleteNave(@PathVariable Long id) {
         naveService.deleteNave(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/despegar")
+    public ResponseEntity<String> despegarNave(@PathVariable Long id) {
+        naveService.despegar(id);
+        return ResponseEntity.ok("La nave ha despegado con éxito");
     }
 }
