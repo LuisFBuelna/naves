@@ -23,4 +23,20 @@ public class NaveExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(value = {NaveSinTripulantesException.class})
+    public ResponseEntity<Object> handleSinTripulanteException(NaveSinTripulantesException exception) {
+        ExceptionResponse response = new ExceptionResponse(
+                exception.getMessage(),
+                HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {NaveSinTripulantesException.class})
+    public ResponseEntity<Object> handleBadRequestException(BadRequestException exception) {
+        ExceptionResponse response = new ExceptionResponse(
+                exception.getMessage(),
+                HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
